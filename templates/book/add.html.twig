@@ -1,0 +1,14 @@
+{{ form_start(f) }}
+
+{{ form_row(f.ref, {'label': 'Reference :', 'attr': {'class': 'form-control'}}) }}
+{{ form_row(f.title, {'label': 'Titre :', 'attr': {'class': 'form-control'}}) }}
+{{ form_row(f.category, {'label': 'Category :', 'attr': {'class': 'form-control'}}) }}
+{{ form_row(f.publicationdate, {'label': 'Date de publication :', 'attr': {'class': 'form-control'}}) }}
+{{ form_row(f.published, {'label': 'Publié :', 'attr': {'class': 'form-control'}}) }}
+{{ form_row(f.author, {'label': 'Auteur :', 'attr': {'class': 'form-control'}}) }}
+
+{{ form_widget(f.Add, {'label': 'Save', 'attr': {'class': 'btn btn-primary'}}) }}
+
+
+{{ form_end(f) }}
+<a href="{{ path('book_show') }}" class="btn btn-secondary">Retour à la liste</a>

@@ -1,0 +1,26 @@
+
+
+{% block body %}
+<h1>Détails du Livre</h1>
+
+<table>
+<tr>
+        <th>Auteur</th>
+        <td>{{ book.author.username }}</td>
+    </tr>
+    <tr>
+        <th>Titre</th>
+        <td>{{ book.title }}</td>
+    </tr>
+   
+    
+    <tr>
+        <th>Date de Publication</th>
+        <td>{{ book.publicationdate| date }}</td>
+    </tr>
+    
+    
+</table>
+
+<a href="{{ path('book_show') }}">Retour à la liste des livres</a>
+{% endblock %}

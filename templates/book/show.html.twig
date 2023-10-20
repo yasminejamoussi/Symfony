@@ -1,0 +1,55 @@
+{% block styles %}
+    <style>
+        /* Vos styles CSS ici */
+        .table-bordered {
+            border: 2px solid #000;
+            border-collapse: collapse;
+        }
+
+        .table-spaced td, .table-spaced th {
+            padding: 10px;
+            border: 1px solid #000;
+
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+<h1>Liste des Livres</h1>
+<div class="table-responsive">
+    <table class="table table-bordered table-spaced">
+        <thead>
+            <tr>
+                <th>Auteur Id</th>
+                <th>Titre</th>
+                <th>Category</th>
+                <th>Date de publication</th>
+                <th>Publié</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.author.username }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.category }}</td>
+                <td>{{ book.publicationdate|date('j/m/Y') }}</td>
+                <td>{{ book.published ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('app_book_update', {id: book.ref }) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('app_book_remove', {id: book.ref }) }}" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ path('book_details', {id: book.ref }) }}" class="btn btn-info">Voir les détails</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <p>Nombre de livres publiés : {{ books|filter(book => book.published)|length }}</p>
+    <p>Nombre de livres non publiés : {{ books|filter(book => not book.published)|length }}</p>
+</div>
+<a href="{{ path('app_book_add') }}" class="btn btn-success">Ajouter</a>
+{% endblock %}
